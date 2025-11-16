@@ -1,0 +1,526 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    color: #00ff00;
+    background: url('https://wallpaperaccess.com/full/796849.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay to make text more readable */
+    z-index: -1;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #004d99, #001f3f);
+    color: #0F0;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    animation: headerShadowPulse 3s infinite;
+    border-bottom: 2px solid #0F0;
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    text-shadow: 0 0 10px #0F0;
+}
+
+header p {
+    font-size: 1.2em;
+    text-shadow: 0 0 5px #0F0;
+}
+
+/* Navigation */
+nav {
+    background-color: #333;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 10px 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Main Content */
+main {
+    padding: 30px 0;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.course-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.course-list li {
+    margin: 10px 0;
+}
+
+.course-list li a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.course-list li a:hover {
+    color: #0056b3;
+}
+
+.book-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.book-list li {
+    margin: 10px 0;
+}
+
+.book-list li a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.book-list li a:hover {
+    color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Container to center content */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    margin: 20px auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Branch Sections Styling */
+.branch-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.branch {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.branch h3 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .branch {
+        min-width: 100%;
+    }
+}
+
+/* विषय सूची को डिफ़ॉल्ट रूप से छुपाएं */
+.hidden {
+    display: none;
+}
+
+/* सक्रिय विषय सूची दिखाएं */
+.subject-list.active {
+    display: block;
+    margin-top: 10px;
+    padding-left: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.subject-list li a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.subject-list li a:hover {
+    color: #0056b3;
+}
+
+canvas#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.4; /* Make matrix effect slightly transparent */
+}
+
+/* Adjust existing content to be more visible over the matrix background */
+body {
+    color: #00ff00; /* Matrix green */
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+a {
+    color: #00ff00;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/* Semester Labs Styling */
+.semester-list {
+    list-style: none;
+    padding: 0;
+}
+
+.semester-item {
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.semester-header {
+    padding: 15px;
+    background: rgba(0, 255, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.semester-header:hover {
+    background: rgba(0, 255, 0, 0.2);
+}
+
+.arrow-icon {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.semester-header.active .arrow-icon {
+    transform: rotate(90deg);
+}
+
+.lab-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.semester-header.active + .lab-content {
+    max-height: 500px;
+}
+
+.lab-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(0, 255, 0, 0.1);
+    margin: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.lab-link:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: translateX(10px);
+}
+
+.lab-number {
+    margin-right: 10px;
+    color: #0f0;
+    font-weight: bold;
+}
+
+.lab-name {
+    flex-grow: 1;
+}
+
+.fas.fa-download {
+    color: #0f0;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.lab-link:hover .fas.fa-download {
+    opacity: 1;
+}
+
+.social-links {
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 12px;
+    font-size: 24px;
+    color: #0F0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover::before {
+    border-color: #0F0;
+    transform: scale(1.2);
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    color: #FFF;
+    text-shadow: 0 0 15px #0F0;
+}
+
+/* Individual social media hover colors */
+.fa-facebook:hover {
+    color: #1877f2;
+    text-shadow: 0 0 15px #1877f2;
+}
+
+.fa-instagram:hover {
+    color: #e4405f;
+    text-shadow: 0 0 15px #e4405f;
+}
+
+.fa-twitter:hover {
+    color: #1da1f2;
+    text-shadow: 0 0 15px #1da1f2;
+}
+
+.fa-linkedin:hover {
+    color: #0077b5;
+    text-shadow: 0 0 15px #0077b5;
+}
+
+.fa-youtube:hover {
+    color: #ff0000;
+    text-shadow: 0 0 15px #ff0000;
+}
+
+.fa-whatsapp:hover {
+    color: #25d366;
+    text-shadow: 0 0 15px #25d366;
+}
+
+/* Responsive design for social icons */
+@media (max-width: 768px) {
+    .social-links {
+        margin-top: 15px;
+    }
+
+    .social-icon {
+        font-size: 20px;
+        margin: 0 8px;
+    }
+}
+
+.dashboard-card {
+    background: rgba(0, 20, 0, 0.8);
+    border: 2px solid #0F0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    animation: borderGlow 2s infinite;
+}
+
+.dashboard-card::before,
+.dashboard-card::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #0F0;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.dashboard-card::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+@keyframes borderGlow {
+    0% {
+        box-shadow: 0 0 5px #0F0;
+    }
+    50% {
+        box-shadow: 0 0 20px #0F0;
+    }
+    100% {
+        box-shadow: 0 0 5px #0F0;
+    }
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+@keyframes headerShadowPulse {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    }
+}
+
+/* Remove or comment out the search bar styles */
+/*
+.search-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-input {
+    width: 200px;
+    padding: 8px;
+    border: 2px solid #0F0;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #0F0;
+    background-color: rgba(0, 20, 0, 0.8);
+    transition: width 0.4s ease;
+}
+
+#search-input:focus {
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#search-button {
+    padding: 8px 16px;
+    border: 2px solid #0F0;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #0F0;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-button:hover {
+    background-color: #00cc00;
+}
+*/

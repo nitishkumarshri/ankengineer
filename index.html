@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANK Engineer</title>
+    <link rel="stylesheet" href="INDEX.CSS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Background */
+
+        body {
+            background-color: #000;
+            color: #0F0;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Effect */
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 32, 0, 0.8) 50%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: -1;
+        }
+
+        /* Dashboard Styling */
+
+        .dashboard-card {
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #0F0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            animation: borderGlow 2s infinite;
+        }
+
+        .dashboard-card::before,
+        .dashboard-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #0F0;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .dashboard-card::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @keyframes borderGlow {
+            0% {
+                box-shadow: 0 0 5px #0F0;
+            }
+            50% {
+                box-shadow: 0 0 20px #0F0;
+            }
+            100% {
+                box-shadow: 0 0 5px #0F0;
+            }
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Headers */
+
+        h2,
+        h3,
+        h4 {
+            color: #0F0;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after,
+        h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #0F0;
+            box-shadow: 0 0 10px #0F0;
+        }
+
+        /* Links */
+
+        a {
+            color: #0F0;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #FFF;
+            text-shadow: 0 0 10px #0F0;
+        }
+
+        /* List Items */
+
+        li {
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-left: 2px solid #0F0;
+            transition: all 0.3s ease;
+        }
+
+        li:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Buttons */
+
+        button {
+            background: rgba(0, 20, 0, 0.8);
+            color: #0F0;
+            border: 1px solid #0F0;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient( rgba(0, 255, 0, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        button:hover::after {
+            opacity: 1;
+        }
+
+        /* Glitch Effect for Important Elements */
+
+        .glitch-effect {
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        /* Scanline Effect */
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient( 0deg, rgba(0, 0, 0, 0.15) 0px, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Input Fields */
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            background: rgba(0, 20, 0, 0.8);
+            border: 1px solid #0F0;
+            color: #0F0;
+            padding: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        /* Tables */
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: rgba(0, 20, 0, 0.8);
+        }
+
+        th,
+        td {
+            border: 1px solid #0F0;
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:hover {
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        /* Loading Animation */
+
+        .loading {
+            border: 2px solid #0F0;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Loading Screen */
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .loading-screen img {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #0f0);
+            animation: glitch 2s infinite, pulse 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                filter: drop-shadow(0 0 10px #0f0);
+            }
+            20% {
+                transform: translate(-5px, 5px);
+                filter: drop-shadow(0 0 15px #0ff);
+            }
+            40% {
+                transform: translate(5px, -5px);
+                filter: drop-shadow(0 0 20px #f0f);
+            }
+            60% {
+                transform: translate(-5px, -5px);
+                filter: drop-shadow(0 0 15px #ff0);
+            }
+            80% {
+                transform: translate(5px, 5px);
+                filter: drop-shadow(0 0 10px #0f0);
+            }
+            100% {
+                transform: translate(0);
+                filter: drop-shadow(0 0 10px #0f0);
+            }
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .typing-text {
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            margin-top: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #0f0;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent
+            }
+            50% {
+                border-color: #0f0
+            }
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            width: 100px;
+            /* आवश्यकतानुसार साइज़ एडजस्ट करें */
+            height: auto;
+            mix-blend-mode: multiply;
+            /* बैकग्राउंड को हटाने में मदद करेगा */
+            filter: brightness(1.1) contrast(1.1);
+            /* इमेज को और स्पष्ट बनाएगा */
+        }
+
+        .header-logo-container {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 0 10px #0f0, 0 0 20px #0f0, inset 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .header-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 5px #0f0);
+            animation: logoGlitch 3s infinite;
+            mix-blend-mode: screen;
+        }
+
+        .header-logo-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 3px solid #0f0;
+            border-radius: 50%;
+            animation: rotateBorder 4s linear infinite;
+        }
+
+        .header-logo-container::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border: 2px solid #0f0;
+            border-radius: 50%;
+            animation: rotateBorder 4s linear infinite reverse;
+        }
+
+        @keyframes logoGlitch {
+            0%,
+            100% {
+                transform: scale(1);
+                filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 5px #0f0);
+            }
+            25% {
+                transform: scale(1.05) skew(2deg);
+                filter: brightness(1.4) contrast(1.4) drop-shadow(0 0 10px #0ff);
+            }
+            50% {
+                transform: scale(0.95);
+                filter: brightness(1.6) contrast(1.6) drop-shadow(0 0 15px #f0f);
+            }
+            75% {
+                transform: scale(1.02) skew(-2deg);
+                filter: brightness(1.4) contrast(1.4) drop-shadow(0 0 10px #ff0);
+            }
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(0, 255, 0, 0.2) 0%, transparent 70%);
+            animation: glowPulse 2s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        header .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #0f0;
+        }
+
+        .header-matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .lab-content {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #0f0;
+        }
+
+        .lab-content h4 {
+            color: #0f0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #0f0;
+        }
+
+        .lab-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lab-content ul li {
+            margin: 10px 0;
+        }
+
+        .lab-content ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .lab-content ul li a:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #lab-dashboard {
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .dashboard-title {
+            color: #0f0;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .dashboard-card {
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid #0f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .dashboard-card h3 {
+            color: #0f0;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #0f0;
+            padding-bottom: 10px;
+        }
+
+        .branch-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0f0;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .course-card h4 {
+            color: #0ff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .course-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-card ul li {
+            margin: 10px 0;
+        }
+
+        .course-card ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .course-card ul li a:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .course-card ul li a i {
+            margin-right: 10px;
+        }
+
+        /* Animation for cards */
+
+        .dashboard-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lab-subjects {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .lab-subjects a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .lab-subjects a:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .course-card h5 {
+            color: #0f0;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 5px;
+        }
+
+        .lab-subjects i {
+            margin-right: 10px;
+            color: #0f0;
+        }
+
+        /* Add these styles to your existing CSS */
+
+        .semester-item {
+            margin: 10px 0;
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .semester-header {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .semester-header:hover {
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        .semester-title {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .arrow-icon {
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .semester-header.active .arrow-icon {
+            transform: rotate(90deg);
+        }
+
+        .lab-subjects {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .lab-subjects.show {
+            padding: 15px;
+            max-height: 500px;
+        }
+
+        .lab-subjects a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .lab-subjects a:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Add these styles to your existing CSS */
+
+        .semester-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .semester-item {
+            margin-bottom: 15px;
+            border: 1px solid #0f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .semester-toggle {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: none;
+            color: #fff;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .semester-toggle:hover {
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        .semester-toggle i {
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .semester-toggle.active i {
+            transform: rotate(90deg);
+        }
+
+        .semester-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .semester-content.show {
+            max-height: 500px;
+        }
+
+        .lab-subject {
+            padding: 5px 15px;
+        }
+
+        .lab-subject a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            margin: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .lab-subject a:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .subject-name {
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .download-icon {
+            color: #0f0;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .lab-subject a:hover .download-icon {
+            opacity: 1;
+        }
+
+        .site-title {
+            font-family: 'Arial', sans-serif;
+            /* Choose a font family */
+            font-size: 36px;
+            /* Increase the font size */
+            font-weight: bold;
+            /* Make the text bold */
+            color: #0F0;
+            /* Set the text color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Add a shadow for depth */
+            letter-spacing: 2px;
+            /* Add space between letters */
+            margin: 0;
+            /* Remove default margin */
+            padding: 10px 0;
+            /* Add padding for spacing */
+            text-align: center;
+            /* Center the text */
+        }
+
+        .social-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-icon {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 24px;
+            color: #0F0;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Individual social media colors on hover */
+
+        .fa-facebook:hover {
+            color: #1877f2;
+        }
+
+        .fa-instagram:hover {
+            color: #e4405f;
+        }
+
+        .fa-twitter:hover {
+            color: #1da1f2;
+        }
+
+        .fa-linkedin:hover {
+            color: #0077b5;
+        }
+
+        .fa-youtube:hover {
+            color: #ff0000;
+        }
+
+        .fa-whatsapp:hover {
+            color: #25d366;
+        }
+
+        /* Add glowing effect */
+
+        .social-icon {
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .social-icon:hover {
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 768px) {
+            .social-links {
+                margin-top: 15px;
+            }
+            .social-icon {
+                font-size: 20px;
+                margin: 0 10px;
+            }
+        }
+
+        .small-map-container {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #0F0;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .small-map-container iframe {
+            display: block;
+            max-width: 200px;
+            max-height: 150px;
+            border-radius: 2px;
+        }
+
+        .small-map-container:hover {
+            box-shadow: 0 0 12px rgba(0, 255, 0, 0.4);
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 768px) {
+            .small-map-container {
+                display: block;
+                margin: 10px auto;
+            }
+            .small-map-container iframe {
+                width: 180px;
+                height: 130px;
+            }
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px 0;
+        }
+
+        .footer-info {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .small-map-container {
+            flex-shrink: 0;
+            margin-left: 20px;
+            padding: 5px;
+            border: 1px solid #0F0;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .small-map-container iframe {
+            display: block;
+            width: 200px;
+            height: 150px;
+            border-radius: 2px;
+        }
+
+        .small-map-container:hover {
+            box-shadow: 0 0 12px rgba(0, 255, 0, 0.4);
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-info {
+                padding-right: 0;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .small-map-container {
+                margin-left: 0;
+            }
+        }
+
+        .footer-card {
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #0F0;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            border-radius: 10px;
+            animation: borderGlow 2s infinite;
+        }
+
+        /* Corner decorations */
+
+        .footer-card::before,
+        .footer-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #0F0;
+        }
+
+        .footer-card::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .footer-card::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .copyright-text {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 10px #0F0;
+        }
+
+        .year {
+            color: #0F0;
+            font-weight: bold;
+        }
+
+        .company {
+            color: #0F0;
+            font-weight: bold;
+            margin-left: 5px;
+            letter-spacing: 2px;
+        }
+
+        .credits p,
+        .director-info p,
+        .contact-info p,
+        .location-info p {
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .highlight {
+            color: #FFF;
+            text-shadow: 0 0 5px #0F0;
+            font-weight: bold;
+        }
+
+        .fas {
+            margin-right: 10px;
+            color: #0F0;
+        }
+
+        /* Glowing border animation */
+
+        @keyframes borderGlow {
+            0% {
+                box-shadow: 0 0 5px #0F0;
+            }
+            50% {
+                box-shadow: 0 0 20px #0F0;
+            }
+            100% {
+                box-shadow: 0 0 5px #0F0;
+            }
+        }
+
+        /* Hover effect */
+
+        .footer-card:hover {
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 768px) {
+            .footer-card {
+                padding: 15px;
+            }
+            .copyright-text {
+                font-size: 1em;
+            }
+        }
+
+        /* Additional decorative elements */
+
+        .footer-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient( 45deg, transparent 0%, rgba(0, 255, 0, 0.1) 50%, transparent 100%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Social Media Links Styling */
+
+        .social-links {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+            text-align: center;
+        }
+
+        .social-icon {
+            display: inline-block;
+            margin: 0 12px;
+            font-size: 24px;
+            color: #0F0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover::before {
+            border-color: #0F0;
+            transform: scale(1.2);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: #FFF;
+            text-shadow: 0 0 15px #0F0;
+        }
+
+        /* Individual social media hover colors */
+
+        .fa-facebook:hover {
+            color: #1877f2;
+            text-shadow: 0 0 15px #1877f2;
+        }
+
+        .fa-instagram:hover {
+            color: #e4405f;
+            text-shadow: 0 0 15px #e4405f;
+        }
+
+        .fa-twitter:hover {
+            color: #1da1f2;
+            text-shadow: 0 0 15px #1da1f2;
+        }
+
+        .fa-linkedin:hover {
+            color: #0077b5;
+            text-shadow: 0 0 15px #0077b5;
+        }
+
+        .fa-youtube:hover {
+            color: #ff0000;
+            text-shadow: 0 0 15px #ff0000;
+        }
+
+        .fa-whatsapp:hover {
+            color: #25d366;
+            text-shadow: 0 0 15px #25d366;
+        }
+
+        /* Animation for social icons */
+
+        .social-icon {
+            animation: iconFloat 2s infinite;
+        }
+
+        @keyframes iconFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Responsive design for social icons */
+
+        @media (max-width: 768px) {
+            .social-links {
+                margin-top: 15px;
+            }
+            .social-icon {
+                font-size: 20px;
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-screen">
+        <canvas id="matrix-rain" class="matrix-bg"></canvas>
+        <div class="logo-container">
+            <img src="ank-logo.png.png" alt="ANK Engineer Logo">
+            <div class="typing-text">Initializing ANK Engineer System...</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-logo-container">
+                <div class="logo-glow"></div>
+                <img src="logo.png" alt="ANK Engineer Logo" class="header-logo">
+            </div>
+            <div class="header-text">
+                <h1 class="site-title">ANK ENGINEER</h1>
+                <p>Your one-stop solution for Engineering and Technology study materials</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#diploma" class="animated-header">Diploma</a></li>
+                <li><a href="#bca" class="animated-header">BCA</a></li>
+                <li><a href="#btech" class="animated-header">B.Tech</a></li>
+                <li><a href="#labs" class="animated-header">Labs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Diploma Section -->
+        <section id="diploma">
+            <div class="container">
+                <h2>Diploma (1st to 6th Semester)</h2>
+                <div class="branch-sections">
+                    <!-- CSE Branch -->
+                    <div class="branch">
+                        <h3>Computer Science Engineering (CSE)</h3>
+                        <ul class="course-list">
+                            <li><a href="#diploma-cse1" class="toggle-subjects">1st Semester</a></li>
+                            <li><a href="#diploma-cse2" class="toggle-subjects">2nd Semester</a></li>
+                            <li><a href="#diploma-cse3" class="toggle-subjects">3rd Semester</a></li>
+                            <li><a href="#diploma-cse4" class="toggle-subjects">4th Semester</a></li>
+                            <li><a href="#diploma-cse5" class="toggle-subjects">5th Semester</a></li>
+                            <li><a href="#diploma-cse6" class="toggle-subjects">6th Semester</a></li>
+                        </ul>
+                        <ul id="diploma-cse1" class="subject-list hidden">
+                            <li>
+                                <h5>प्रथम सेमेस्टर लैब</h5>
+                                <div class="lab-subjects">
+                                    <a href="labs/diploma/cse/sem1/computer-fundamentals-lab.pdf" download>
+                                        <i class="fas fa-download"></i> कंप्यूटर फंडामेंटल्स लैब
+                                    </a>
+                                    <a href="labs/diploma/cse/sem1/basic-electronics-lab.pdf" download>
+                                        <i class="fas fa-download"></i> बेसिक इलेक्ट्रॉनिक्स लैब
+                                    </a>
+                                    <a href="labs/diploma/cse/sem1/engineering-drawing-lab.pdf" download>
+                                        <i class="fas fa-download"></i> इंजीनियरिंग ड्राइंग लैब
+                                    </a>
+                                    <a href="labs/diploma/cse/sem1/physics-lab.pdf" download>
+                                        <i class="fas fa-download"></i> फिजिक्स लैब
+                                    </a>
+                                    <a href="labs/diploma/cse/sem1/chemistry-lab.pdf" download>
+                                        <i class="fas fa-download"></i> केमिस्ट्री लैब
+                                    </a>
+                                </div>
+                            </li>
+                            <li><a href="subject1.pdf" target="_blank">Physics </a></li>
+                            <li><a href="subject2.pdf" target="_blank">Applied Mathematics</a></li>
+                            <li><a href="subject3.pdf" target="_blank">Communication Skills</a></li>
+                            <li><a href="subject4.pdf" target="_blank">Chemistry</a></li>
+                            <li><a href="subject5.pdf" target="_blank">Computer Fundamentals</a></li>
+                        </ul>
+                        <ul id="diploma-cse2" class="subject-list hidden">
+                            <li><a href="subject6.pdf" target="_blank">विषय 6</a></li>
+                            <li><a href="subject7.pdf" target="_blank">विषय 7</a></li>
+                            <li><a href="subject8.pdf" target="_blank">विषय 8</a></li>
+                            <li><a href="subject9.pdf" target="_blank">विषय 9</a></li>
+                            <li><a href="subject10.pdf" target="_blank">विषय 10</a></li>
+                        </ul>
+                        <ul id="diploma-cse3" class="subject-list hidden">
+                            <li><a href="subject11.pdf" target="_blank">विषय 11</a></li>
+                            <li><a href="subject12.pdf" target="_blank">विषय 12</a></li>
+                            <li><a href="subject13.pdf" target="_blank">विषय 13</a></li>
+                            <li><a href="subject14.pdf" target="_blank">विषय 14</a></li>
+                            <li><a href="subject15.pdf" target="_blank">विषय 15</a></li>
+                        </ul>
+                        <ul id="diploma-cse4" class="subject-list hidden">
+                            <li><a href="subject16.pdf" target="_blank">विषय 16</a></li>
+                            <li><a href="subject17.pdf" target="_blank">विषय 17</a></li>
+                            <li><a href="subject18.pdf" target="_blank">विषय 18</a></li>
+                            <li><a href="subject19.pdf" target="_blank">विषय 19</a></li>
+                            <li><a href="subject20.pdf" target="_blank">विषय 20</a></li>
+                        </ul>
+                        <ul id="diploma-cse5" class="subject-list hidden">
+                            <li><a href="subject21.pdf" target="_blank">विषय 21</a></li>
+                            <li><a href="subject22.pdf" target="_blank">विषय 22</a></li>
+                            <li><a href="subject23.pdf" target="_blank">विषय 23</a></li>
+                            <li><a href="subject24.pdf" target="_blank">विषय 24</a></li>
+                            <li><a href="subject25.pdf" target="_blank">विषय 25</a></li>
+                        </ul>
+                        <ul id="diploma-cse6" class="subject-list hidden">
+                            <li><a href="subject26.pdf" target="_blank">विषय 26</a></li>
+                            <li><a href="subject27.pdf" target="_blank">विषय 27</a></li>
+                            <li><a href="subject28.pdf" target="_blank">विषय 28</a></li>
+                            <li><a href="subject29.pdf" target="_blank">विषय 29</a></li>
+                            <li><a href="subject30.pdf" target="_blank">विषय 30</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Electrical Engineering Branch -->
+                    <div class="branch">
+                        <h3>Electrical Engineering (EE)</h3>
+                        <ul class="course-list">
+                            <li><a href="#diploma-ee1" class="toggle-subjects">1st Semester</a></li>
+                            <li><a href="#diploma-ee2" class="toggle-subjects">2nd Semester</a></li>
+                            <li><a href="#diploma-ee3" class="toggle-subjects">3rd Semester</a></li>
+                            <li><a href="#diploma-ee4" class="toggle-subjects">4th Semester</a></li>
+                            <li><a href="#diploma-ee5" class="toggle-subjects">5th Semester</a></li>
+                            <li><a href="#diploma-ee6" class="toggle-subjects">6th Semester</a></li>
+                        </ul>
+                        <ul id="diploma-ee1" class="subject-list hidden">
+                            <li><a href="ee-subject1.pdf" target="_blank">विषय 1</a></li>
+                            <li><a href="ee-subject2.pdf" target="_blank">विषय 2</a></li>
+                            <li><a href="ee-subject3.pdf" target="_blank">विषय 3</a></li>
+                            <li><a href="ee-subject4.pdf" target="_blank">विषय 4</a></li>
+                            <li><a href="ee-subject5.pdf" target="_blank">विषय 5</a></li>
+                        </ul>
+                        <ul id="diploma-ee2" class="subject-list hidden">
+                            <li><a href="ee-subject6.pdf" target="_blank">विषय 6</a></li>
+                            <li><a href="ee-subject7.pdf" target="_blank">विषय 7</a></li>
+                            <li><a href="ee-subject8.pdf" target="_blank">विषय 8</a></li>
+                            <li><a href="ee-subject9.pdf" target="_blank">विषय 9</a></li>
+                            <li><a href="ee-subject10.pdf" target="_blank">विषय 10</a></li>
+                        </ul>
+                        <ul id="diploma-ee3" class="subject-list hidden">
+                            <li><a href="ee-subject11.pdf.pdf" target="_blank">Basic Electronics</a></li>
+                            <li><a href="ee-subject12.pdf.pdf" target="_blank">Renewble Energy</a></li>
+                            <li><a href="ee-subject13.pdf" target="_blank">Basic Electrical Engineering</a></li>
+                            <li><a href="ee-subject14.pdf" target="_blank">Electrical Measurement & Instrumention</a></li>
+                            <li><a href="ee-subject15.pdf" target="_blank">Electrical circuit theory</a></li>
+                        </ul>
+                        <ul id="diploma-ee4" class="subject-list hidden">
+                            <li><a href="ee-subject16.pdf" target="_blank">Electrical Machines-1</a></li>
+                            <li><a href="ee-subject17.pdf" target="_blank">Power system-1</a></li>
+                            <li><a href="ee-subject18.pdf" target="_blank">Microprocessor and Interface</a></li>
+                            <li><a href="ee-subject19.pdf" target="_blank">Digital Electronice</a></li>
+                            <li>
+                                <a href="ee-subject20.pdf" target="_blank">
+                                    <C-programming></C-programming>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul id="diploma-ee5" class="subject-list hidden">
+                            <li><a href="ee-subject21.pdf" target="_blank">Power Electronics&Drives</a></li>
+                            <li><a href="ee-subject22.pdf" target="_blank">Power system-2</a></li>
+                            <li><a href="ee-subject23.pdf" target="_blank">Electrical Machine-2</a></li>
+                            <li><a href="ee-subject24.pdf" target="_blank">Electrical Desingn & Drawing</a></li>
+                            <li><a href="ee-subject25.pdf" target="_blank">Fundamentals of control System </a></li>
+                            <li><a href="ee-subject25.pdf" target="_blank">Non Conventional Energy Sources</a></li>
+                        </ul>
+                        <ul id="diploma-ee6" class="subject-list hidden">
+                            <li><a href="ee-subject26.pdf" target="_blank">Power system-3</a></li>
+                            <li><a href="ee-subject27.pdf" target="_blank">Utilization of Electrical Power & Traction </a></li>
+                            <li><a href="ee-subject28.pdf" target="_blank">Estimating Costing & Design of Electrical Installation</a></li>
+                            <li><a href="ee-subject29.pdf" target="_blank">Switchgear & Protection</a></li>
+                            <li><a href="ee-subject30.pdf" target="_blank">Energy Management</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Civil Engineering Branch -->
+                    <div class="branch">
+                        <h3>Civil Engineering</h3>
+                        <ul class="course-list">
+                            <li><a href="#diploma-civil1" class="toggle-subjects">1st Semester</a></li>
+                            <li><a href="#diploma-civil2" class="toggle-subjects">2nd Semester</a></li>
+                            <li><a href="#diploma-civil3" class="toggle-subjects">3rd Semester</a></li>
+                            <li><a href="#diploma-civil4" class="toggle-subjects">4th Semester</a></li>
+                            <li><a href="#diploma-civil5" class="toggle-subjects">5th Semester</a></li>
+                            <li><a href="#diploma-civil6" class="toggle-subjects">6th Semester</a></li>
+                        </ul>
+                        <ul id="diploma-civil1" class="subject-list hidden">
+                            <li><a href="civil-subject1.pdf" target="_blank">Engineering Drawing</a></li>
+                            <li><a href="civil-subject2.pdf" target="_blank">Mathematics</a></li>
+                            <li><a href="civil-subject3.pdf" target="_blank">Physics</a></li>
+                            <li><a href="civil-subject4.pdf" target="_blank">Chemistry</a></li>
+                            <li><a href="civil-subject5.pdf" target="_blank">Communication Skills</a></li>
+                        </ul>
+                        <ul id="diploma-civil2" class="subject-list hidden">
+                            <li><a href="civil-subject6.pdf" target="_blank">Applied Mechanics</a></li>
+                            <li><a href="civil-subject7.pdf" target="_blank">Construction Materials</a></li>
+                            <li><a href="civil-subject8.pdf" target="_blank">Civil Engineering Drawing</a></li>
+                            <li><a href="civil-subject9.pdf" target="_blank">Applied Mathematics</a></li>
+                            <li><a href="civil-subject10.pdf" target="_blank">Workshop Practice</a></li>
+                        </ul>
+                        <ul id="diploma-civil3" class="subject-list hidden">
+                            <li><a href="civil-subject11.pdf" target="_blank">Strength of Materials</a></li>
+                            <li><a href="civil-subject12.pdf" target="_blank">Fluid Mechanics-1/</a></li>
+                            <li><a href="civil-subject13.pdf" target="_blank">Building Construction-1</a></li>
+                            <li><a href="civil-subject14.pdf" target="_blank">Surveying-1</a></li>
+                            <li><a href="civil-subject15.pdf" target="_blank">Building Material </a></li>
+                        </ul>
+                        <ul id="diploma-civil4" class="subject-list hidden">
+                            <li><a href="civil-subject16.pdf" target="_blank">Building Construction-2 </a></li>
+                            <li><a href="civil-subject17.pdf" target="_blank">Transportation Engineering-1</a></li>
+                            <li><a href="civil-subject18.pdf" target="_blank">Concrete Technology</a></li>
+                            <li><a href="civil-subject19.pdf" target="_blank">Surveying-2</a></li>
+                            <li><a href="civil-subject20.pdf" target="_blank">Fluid Mechanics-2</a></li>
+                        </ul>
+                        <ul id="diploma-civil5" class="subject-list hidden">
+                            <li><a href="civil-subject21.pdf" target="_blank">Soil Mechanics& Foundation Engg.</a></li>
+                            <li><a href="civil-subject22.pdf" target="_blank">Public Health Engineering-1 </a></li>
+                            <li><a href="civil-subject23.pdf" target="_blank">Design of RCC Structure </a></li>
+                            <li><a href="civil-subject24.pdf" target="_blank">Transportation Enggineering-2</a></li>
+                            <li><a href="civil-subject25.pdf" target="_blank">Estimating Costing& Valution</a></li>
+                            <li><a href="civil-subject25.pdf" target="_blank">Throry of Structure</a></li>
+                        </ul>
+                        <ul id="diploma-civil6" class="subject-list hidden">
+                            <li><a href="civil-subject26.pdf" target="_blank">Design of Steel Structure </a></li>
+                            <li><a href="civil-subject27.pdf" target="_blank">Public Health Engineering-2</a></li>
+                            <li><a href="civil-subject28.pdf" target="_blank">Irrigation Engineering </a></li>
+                            <li><a href="civil-subject29.pdf" target="_blank">Earthquake Engineering </a></li>
+                            <li><a href="civil-subject30.pdf" target="_blank">Construction Management&Accounts</a></li>
+                            <li><a href="civil-subject30.pdf" target="_blank">Building Technology & Planning </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BCA Section -->
+        <section id="bca">
+            <div class="container">
+                <h2>BCA (1st to 6th Semester)</h2>
+                <ul class="course-list">
+                    <li><a href="#bca-sem1" class="toggle-subjects">1st Semester</a></li>
+                    <li><a href="#bca-sem2" class="toggle-subjects">2nd Semester</a></li>
+                    <li><a href="#bca-sem3" class="toggle-subjects">3rd Semester</a></li>
+                    <li><a href="#bca-sem4" class="toggle-subjects">4th Semester</a></li>
+                    <li><a href="#bca-sem5" class="toggle-subjects">5th Semester</a></li>
+                    <li><a href="#bca-sem6" class="toggle-subjects">6th Semester</a></li>
+                </ul>
+                <ul id="bca-sem1" class="subject-list hidden">
+                    <li><a href="bca-subject1.pdf" target="_blank">Computer Fundamentals & Office Automation</a></li>
+                    <li><a href="bca-subject2.pdf" target="_blank">Programming Principles & Algorithms</a></li>
+                    <li><a href="bca-subject3.pdf" target="_blank">Business Communication</a></li>
+                    <li><a href="bca-subject4.pdf" target="_blank">Mathematics</a></li>
+                    <li><a href="bca-subject5.pdf" target="_blank">Digital Electronics</a></li>
+                    <li><a href="bca-subject6.pdf" target="_blank">Computer Laboratory & Practical</a></li>
+                </ul>
+                <ul id="bca-sem2" class="subject-list hidden">
+                    <li><a href="bca-sem2-subject1.pdf" target="_blank">C Programming</a></li>
+                    <li><a href="bca-sem2-subject2.pdf" target="_blank">Database Management System</a></li>
+                    <li><a href="bca-sem2-subject3.pdf" target="_blank">Financial Accounting</a></li>
+                    <li><a href="bca-sem2-subject4.pdf" target="_blank">Discrete Mathematics</a></li>
+                    <li><a href="bca-sem2-subject5.pdf" target="_blank">Organization Behavior</a></li>
+                    <li><a href="bca-sem2-subject6.pdf" target="_blank">Lab Work & Practical</a></li>
+                </ul>
+                <ul id="bca-sem3" class="subject-list hidden">
+                    <li><a href="bca-sem3-subject1.pdf" target="_blank">Data Structures</a></li>
+                    <li><a href="bca-sem3-subject2.pdf" target="_blank">Object Oriented Programming using C++</a></li>
+                    <li><a href="bca-sem3-subject3.pdf" target="_blank">Operating Systems</a></li>
+                    <li><a href="bca-sem3-subject4.pdf" target="_blank">Computer Networks</a></li>
+                    <li><a href="bca-sem3-subject5.pdf" target="_blank">Business Economics</a></li>
+                    <li><a href="bca-sem3-subject6.pdf" target="_blank">Programming Lab (C++ & Data Structures)</a></li>
+                </ul>
+                <ul id="bca-sem4" class="subject-list hidden">
+                    <li><a href="bca-sem4-subject1.pdf" target="_blank">Software Engineering</a></li>
+                    <li><a href="bca-sem4-subject2.pdf" target="_blank">Java Programming</a></li>
+                    <li><a href="bca-sem4-subject3.pdf" target="_blank">Web Technologies</a></li>
+                    <li><a href="bca-sem4-subject4.pdf" target="_blank">Computer Graphics</a></li>
+                    <li><a href="bca-sem4-subject5.pdf" target="_blank">E-Commerce</a></li>
+                    <li><a href="bca-sem4-subject6.pdf" target="_blank">Programming Lab (Java & Web Tech)</a></li>
+                    <li><a href="bca-sem4-subject7.pdf" target="_blank">Minor Project</a></li>
+                </ul>
+                <ul id="bca-sem5" class="subject-list hidden">
+                    <li><a href="bca-sem5-subject1.pdf" target="_blank">Python Programming</a></li>
+                    <li><a href="bca-sem5-subject2.pdf" target="_blank">Data Mining & Warehousing</a></li>
+                    <li><a href="bca-sem5-subject3.pdf" target="_blank">Software Testing</a></li>
+                    <li><a href="bca-sem5-subject4.pdf" target="_blank">Artificial Intelligence</a></li>
+                    <li><a href="bca-sem5-subject5.pdf" target="_blank">Cloud Computing</a></li>
+                    <li><a href="bca-sem5-subject6.pdf" target="_blank">Programming Lab (Python & Testing)</a></li>
+                    <li><a href="bca-sem5-subject7.pdf" target="_blank">Major Project - Phase I</a></li>
+                </ul>
+                <ul id="bca-sem6" class="subject-list hidden">
+                    <li><a href="bca-sem6-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                    <li><a href="bca-sem6-subject2.pdf" target="_blank">Cyber Security</a></li>
+                    <li><a href="bca-sem6-subject3.pdf" target="_blank">Machine Learning</a></li>
+                    <li><a href="bca-sem6-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                    <li><a href="bca-sem6-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                    <li><a href="bca-sem6-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                    <li><a href="bca-sem6-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- B.Tech Section -->
+        <section id="btech">
+            <div class="container">
+                <h2>B.Tech (1st to 8th Semester)</h2>
+                <div class="branch-sections">
+                    <!-- CSE Branch -->
+                    <div class="branch">
+                        <h3>Computer Science Engineering (CSE)</h3>
+                        <ul class="course-list">
+                            <li><a href="#btech-cse1" class="toggle-subjects">1st Semester</a></li>
+                            <li><a href="#btech-cse2" class="toggle-subjects">2nd Semester</a></li>
+                            <li><a href="#btech-cse3" class="toggle-subjects">3rd Semester</a></li>
+                            <li><a href="#btech-cse4" class="toggle-subjects">4th Semester</a></li>
+                            <li><a href="#btech-cse5" class="toggle-subjects">5th Semester</a></li>
+                            <li><a href="#btech-cse6" class="toggle-subjects">6th Semester</a></li>
+                            <li><a href="#btech-cse7" class="toggle-subjects">7th Semester</a></li>
+                            <li><a href="#btech-cse8" class="toggle-subjects">8th Semester</a></li>
+                        </ul>
+                        <ul id="btech-cse1" class="subject-list hidden">
+                            <li><a href="btech-cse-sem1-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem1-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem1-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem1-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem1-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem1-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem1-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse2" class="subject-list hidden">
+                            <li><a href="btech-cse-sem2-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem2-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem2-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem2-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem2-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem2-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem2-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse3" class="subject-list hidden">
+                            <li><a href="btech-cse-sem3-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem3-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem3-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem3-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem3-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem3-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem3-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse4" class="subject-list hidden">
+                            <li><a href="btech-cse-sem4-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem4-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem4-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem4-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem4-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem4-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem4-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse5" class="subject-list hidden">
+                            <li><a href="btech-cse-sem5-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem5-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem5-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem5-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem5-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem5-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem5-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse6" class="subject-list hidden">
+                            <li><a href="btech-cse-sem6-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem6-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem6-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem6-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem6-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem6-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem6-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse7" class="subject-list hidden">
+                            <li><a href="btech-cse-sem7-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem7-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem7-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem7-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem7-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem7-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem7-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-cse8" class="subject-list hidden">
+                            <li><a href="btech-cse-sem8-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-cse-sem8-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-cse-sem8-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-cse-sem8-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-cse-sem8-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-cse-sem8-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-cse-sem8-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <!-- Add subject lists for each semester similar to diploma section -->
+                    </div>
+
+                    <!-- EE Branch -->
+                    <div class="branch">
+                        <h3>Electrical Engineering (EE)</h3>
+                        <ul class="course-list">
+                            <li><a href="#btech-ee1" class="toggle-subjects">1st Semester</a></li>
+                            <li><a href="#btech-ee2" class="toggle-subjects">2nd Semester</a></li>
+                            <li><a href="#btech-ee3" class="toggle-subjects">3rd Semester</a></li>
+                            <li><a href="#btech-ee4" class="toggle-subjects">4th Semester</a></li>
+                            <li><a href="#btech-ee5" class="toggle-subjects">5th Semester</a></li>
+                            <li><a href="#btech-ee6" class="toggle-subjects">6th Semester</a></li>
+                            <li><a href="#btech-ee7" class="toggle-subjects">7th Semester</a></li>
+                            <li><a href="#btech-ee8" class="toggle-subjects">8th Semester</a></li>
+                        </ul>
+                        <ul id="btech-ee1" class="subject-list hidden">
+                            <li><a href="btech-ee-sem1-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem1-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem1-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem1-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem1-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem1-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem1-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee2" class="subject-list hidden">
+                            <li><a href="btech-ee-sem2-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem2-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem2-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem2-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem2-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem2-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem2-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee3" class="subject-list hidden">
+                            <li><a href="btech-ee-sem3-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem3-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem3-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem3-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem3-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem3-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem3-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee4" class="subject-list hidden">
+                            <li><a href="btech-ee-sem4-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem4-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem4-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem4-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem4-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem4-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem4-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee5" class="subject-list hidden">
+                            <li><a href="btech-ee-sem5-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem5-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem5-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem5-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem5-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem5-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem5-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee6" class="subject-list hidden">
+                            <li><a href="btech-ee-sem6-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem6-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem6-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem6-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem6-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem6-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem6-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee7" class="subject-list hidden">
+                            <li><a href="btech-ee-sem7-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem7-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem7-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem7-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem7-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem7-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem7-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-ee8" class="subject-list hidden">
+                            <li><a href="btech-ee-sem8-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-ee-sem8-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-ee-sem8-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-ee-sem8-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-ee-sem8-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-ee-sem8-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-ee-sem8-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <!-- Add subject lists for each semester similar to diploma section -->
+                    </div>
+
+                    <!-- Civil Branch (CIVIL) -->
+                    <div class="branch">
+                        <h3>Civil Engineering</h3>
+                        <ul class="course-list">
+                            <li><a href="#btech-civil1" class="toggle-subjects">1st Semester</a></li>
+                            <li><a href="#btech-civil2" class="toggle-subjects">2nd Semester</a></li>
+                            <li><a href="#btech-civil3" class="toggle-subjects">3rd Semester</a></li>
+                            <li><a href="#btech-civil4" class="toggle-subjects">4th Semester</a></li>
+                            <li><a href="#btech-civil5" class="toggle-subjects">5th Semester</a></li>
+                            <li><a href="#btech-civil6" class="toggle-subjects">6th Semester</a></li>
+                            <li><a href="#btech-civil7" class="toggle-subjects">7th Semester</a></li>
+                            <li><a href="#btech-civil8" class="toggle-subjects">8th Semester</a></li>
+                        </ul>
+                        <ul id="btech-civil1" class="subject-list hidden">
+                            <li><a href="btech-civil-sem1-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem1-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem1-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem1-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem1-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem1-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem1-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem1-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem1-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil2" class="subject-list hidden">
+                            <li><a href="btech-civil-sem2-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem2-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem2-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem2-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem2-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem2-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem2-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil3" class="subject-list hidden">
+                            <li><a href="btech-civil-sem3-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem3-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem3-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem3-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem3-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem3-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem3-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil4" class="subject-list hidden">
+                            <li><a href="btech-civil-sem4-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem4-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem4-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem4-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem4-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem4-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem4-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil5" class="subject-list hidden">
+                            <li><a href="btech-civil-sem5-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem5-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem5-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem5-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem5-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem5-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem5-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil6" class="subject-list hidden">
+                            <li><a href="btech-civil-sem6-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem6-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem6-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem6-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem6-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem6-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem6-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil7" class="subject-list hidden">
+                            <li><a href="btech-civil-sem7-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem7-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem7-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem7-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem7-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem7-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem7-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <ul id="btech-civil8" class="subject-list hidden">
+                            <li><a href="btech-civil-sem8-subject1.pdf" target="_blank">Mobile Application Development</a></li>
+                            <li><a href="btech-civil-sem8-subject2.pdf" target="_blank">Cyber Security</a></li>
+                            <li><a href="btech-civil-sem8-subject3.pdf" target="_blank">Machine Learning</a></li>
+                            <li><a href="btech-civil-sem8-subject4.pdf" target="_blank">Internet of Things (IoT)</a></li>
+                            <li><a href="btech-civil-sem8-subject5.pdf" target="_blank">Big Data Analytics</a></li>
+                            <li><a href="btech-civil-sem8-subject6.pdf" target="_blank">Programming Lab (Mobile & IoT)</a></li>
+                            <li><a href="btech-civil-sem8-subject7.pdf" target="_blank">Major Project - Phase II</a></li>
+                        </ul>
+                        <!-- Add subject lists for each semester similar to diploma section -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semester Sections -->
+        <!-- Add sections for each semester like the previous examples -->
+
+        <!-- Add this new section for Lab Dashboard -->
+        <section id="lab-dashboard">
+            <div class="container">
+                <h2 class="dashboard-title">प्रयोगशाला डैशबोर्ड</h2>
+
+                <!-- Diploma Labs Dashboard -->
+                <div class="dashboard-card">
+                    <h3>डिप्लोमा प्रयोगशाला</h3>
+                    <div class="branch-cards">
+                        <!-- CSE -->
+                        <div class="course-card">
+                            <h4>कंप्यूटर साइंस इंजीनियरिंग (CSE)</h4>
+                            <ul class="semester-list">
+                                <!-- First Semester -->
+                                <li class="semester-item">
+                                    <button class="semester-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                        प्रथम सेमेस्टर लैब
+                                    </button>
+                                    <div class="semester-content">
+                                        <div class="lab-subject">
+                                            <a href="labs/diploma/cse/sem1/computer-fundamentals.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">1. कंप्यूटर फंडामेंटल्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem1/basic-electronics.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">2. बेसिक इलेक्ट्रॉनिक्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem1/engineering-drawing.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">3. इंजीनियरिंग ड्राइंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem1/physics.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">4. फिजिक्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem1/chemistry.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">5. केमिस्ट्री लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Second Semester -->
+                                <li class="semester-item">
+                                    <button class="semester-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                        द्वितीय सेमेस्टर लैब
+                                    </button>
+                                    <div class="semester-content">
+                                        <div class="lab-subject">
+                                            <a href="labs/diploma/cse/sem2/programming-c.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">1. C प्रोग्रामिंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem2/digital-electronics.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">2. डिजिटल इलेक्ट्रॉनिक्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem2/data-structures.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">3. डेटा स्ट्रक्चर लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem2/web-basics.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">4. वेब बेसिक्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem2/networking-basics.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">5. नेटवर्किंग बेसिक्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Third Semester -->
+                                <li class="semester-item">
+                                    <button class="semester-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                        तृतीय सेमेस्टर लैब
+                                    </button>
+                                    <div class="semester-content">
+                                        <div class="lab-subject">
+                                            <a href="labs/diploma/cse/sem3/oops-cpp.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">1. C++ प्रोग्रामिंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem3/dbms.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">2. डेटाबेस मैनेजमेंट सिस्टम लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem3/operating-system.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">3. ऑपरेटिंग सिस्टम लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem3/computer-architecture.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">4. कंप्यूटर आर्किटेक्चर लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem3/data-communication.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">5. डेटा कम्युनिकेशन लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Fourth Semester -->
+                                <li class="semester-item">
+                                    <button class="semester-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                        चतुर्थ सेमेस्टर लैब
+                                    </button>
+                                    <div class="semester-content">
+                                        <div class="lab-subject">
+                                            <a href="labs/diploma/cse/sem4/java.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">1. जावा प्रोग्रामिंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem4/computer-networks.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">2. कंप्यूटर नेटवर्क्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem4/web-development.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">3. वेब डेवलपमेंट लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem4/microprocessor.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">4. माइक्रोप्रोसेसर लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem4/software-engineering.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">5. सॉफ्टवेयर इंजीनियरिंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Fifth Semester -->
+                                <li class="semester-item">
+                                    <button class="semester-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                        पंचम सेमेस्टर लैब
+                                    </button>
+                                    <div class="semester-content">
+                                        <div class="lab-subject">
+                                            <a href="labs/diploma/cse/sem5/python.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">1. पायथन प्रोग्रामिंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem5/php-mysql.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">2. PHP और MySQL लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem5/computer-graphics.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">3. कंप्यूटर ग्राफिक्स लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem5/multimedia.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">4. मल्टीमीडिया लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem5/mini-project.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">5. मिनी प्रोजेक्ट</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Sixth Semester -->
+                                <li class="semester-item">
+                                    <button class="semester-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                        षष्ठम सेमेस्टर लैब
+                                    </button>
+                                    <div class="semester-content">
+                                        <div class="lab-subject">
+                                            <a href="labs/diploma/cse/sem6/android.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">1. एंड्रॉइड डेवलपमेंट लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem6/cloud-computing.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">2. क्लाउड कंप्यूटिंग लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem6/cyber-security.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">3. साइबर सिक्योरिटी लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem6/ai-ml.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">4. AI और ML लैब</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                            <a href="labs/diploma/cse/sem6/major-project.pdf" download>
+                                                <i class="fas fa-flask"></i>
+                                                <span class="subject-name">5. मेजर प्रोजेक्ट</span>
+                                                <i class="fas fa-download download-icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EE -->
+                <div class="course-card">
+                    <h4>इलेक्ट्रिकल इंजीनियरिंग</h4>
+                    <ul>
+                        <li><a href="labs/diploma/ee/sem1-labs.pdf" download>
+                            <i class="fas fa-download"></i> प्रथम सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/ee/sem2-labs.pdf" download>
+                            <i class="fas fa-download"></i> द्वितीय सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/ee/sem3-labs.pdf" download>
+                            <i class="fas fa-download"></i> तृतीय सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/ee/sem4-labs.pdf" download>
+                            <i class="fas fa-download"></i> चतुर्थ सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/ee/sem5-labs.pdf" download>
+                            <i class="fas fa-download"></i> पंचम सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/ee/sem6-labs.pdf" download>
+                            <i class="fas fa-download"></i> षष्ठम सेमेस्टर लैब
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Civil -->
+                <div class="course-card">
+                    <h4>सिविल इंजीनियरिंग</h4>
+                    <ul>
+                        <li><a href="labs/diploma/civil/sem1-labs.pdf" download>
+                            <i class="fas fa-download"></i> प्रथम सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/civil/sem2-labs.pdf" download>
+                            <i class="fas fa-download"></i> द्वितीय सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/civil/sem3-labs.pdf" download>
+                            <i class="fas fa-download"></i> तृतीय सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/civil/sem4-labs.pdf" download>
+                            <i class="fas fa-download"></i> चतुर्थ सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/civil/sem5-labs.pdf" download>
+                            <i class="fas fa-download"></i> पंचम सेमेस्टर लैब
+                        </a></li>
+                        <li><a href="labs/diploma/civil/sem6-labs.pdf" download>
+                            <i class="fas fa-download"></i> षष्ठम सेमेस्टर लैब
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-card">
+                        <div class="copyright-text">
+                            <span class="year">© 2025</span>
+                            <span class="company">ANK Engineer</span>
+                        </div>
+                        <div class="credits">
+                            <p>Created by <span class="highlight">Nitish Kumar Shrivastav</span></p>
+                        </div>
+                        <div class="director-info">
+                            <p>Website Director: <span class="highlight">ANK ENGINEER GROUP TEAM</span></p>
+                        </div>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> Email: <span class="highlight">ank.engineer.team@gmail.com</span></p>
+                            <p><i class="fas fa-phone"></i> Mobile: <span class="highlight">8292163559</span></p>
+                        </div>
+                        <div class="location-info">
+                            <p><i class="fas fa-map-marker-alt"></i> Location: <span class="highlight">Siwan,bihar, 841416</span></p>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/Nitishkumarshrivastav12" target="_blank" class="social-icon">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/mr_gunman12/" target="_blank" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://x.com/NITISHK06336764" target="_blank" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/nitish-kumar-shrivastav-497835293?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="social-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://youtube.com/@onlystudybynitish9945" target="_blank" class="social-icon">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://wa.me/918292163559" target="_blank" class="social-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Rest of your footer content -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script>
+        document.querySelectorAll('.toggle-subjects').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetList = document.getElementById(targetId);
+
+                // Hide all subject lists
+                document.querySelectorAll('.subject-list').forEach(list => {
+                    list.classList.add('hidden');
+                    list.classList.remove('active');
+                });
+
+                // Show the clicked subject list
+                targetList.classList.remove('hidden');
+                targetList.classList.add('active');
+            });
+        });
+
+        // मैट्रिक्स रेन एनिमेशन
+        const canvas = document.getElementById('matrix-rain');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // लोडिंग स्क्रीन एनिमेशन
+        window.addEventListener('load', function() {
+            const matrixInterval = setInterval(drawMatrix, 33);
+            const loadingScreen = document.querySelector('.loading-screen');
+
+            setTimeout(() => {
+                clearInterval(matrixInterval);
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transition = 'opacity 1s ease-out';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 1000);
+            }, 5000); // 5 सेकंड बाद लोडिंग स्क्रीन हट जाएगी
+        });
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const chatOutput = document.getElementById('chat-output');
+
+            if (userInput.value.trim() === '') return;
+
+            // यूजर का मैसेज दिखाएं
+            const userMessage = document.createElement('p');
+            userMessage.innerHTML = `<strong>आप:</strong> ${userInput.value}`;
+            chatOutput.appendChild(userMessage);
+
+            // बेसिक रिस्पांस लॉजिक
+            let response = '';
+            const input = userInput.value.toLowerCase();
+
+            if (input.includes('नमस्ते') || input.includes('हाय') || input.includes('हैलो')) {
+                response = 'नमस्ते! मैं आपकी कैसे मदद कर सकता हूं?';
+            } else if (input.includes('कोर्स') || input.includes('पाठ्यक्रम')) {
+                response = 'हमारे पास डिप्लोमा, BCA और B.Tech के कोर्स उपलब्ध हैं। किस कोर्स के बारे में जानना चाहते हैं?';
+            } else if (input.includes('फीस') || input.includes('शुल्क')) {
+                response = 'फीस की जानकारी के लिए कृपया हमारे मोबाइल नंबर 9117484569 पर संपर्क करें।';
+            } else if (input.includes('लोकेशन') || input.includes('पता')) {
+                response = 'हमारा पता है: धनकुटवा, पश्चिम चंपारण, बिहार - 845449';
+            } else {
+                response = 'क्षमा करें, मैं आपका सवाल समझ नहीं पाया। कृपया दूसरे तरीके से पूछें या हमारे मोबाइल नंबर 9117484569 पर संपर्क करें।';
+            }
+
+            // बॉट का रिस्पांस दिखाएं
+            const botMessage = document.createElement('p');
+            botMessage.innerHTML = `<strong>बॉट:</strong> ${response}`;
+            chatOutput.appendChild(botMessage);
+
+            // स्क्रॉल को नीचे ले जाएं
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+
+            // इनपुट फील्ड को खाली करें
+            userInput.value = '';
+        }
+
+        // एंटर की दबाने पर भी मैसेज भेजें
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // हेडर मैट्रिक्स एनिमेशन
+        const headerCanvas = document.querySelector('.header-matrix-bg');
+        const headerCtx = headerCanvas.getContext('2d');
+
+        function resizeHeaderCanvas() {
+            headerCanvas.width = document.querySelector('header').offsetWidth;
+            headerCanvas.height = document.querySelector('header').offsetHeight;
+        }
+
+        resizeHeaderCanvas();
+        window.addEventListener('resize', resizeHeaderCanvas);
+
+        const headerLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%';
+        const headerFontSize = 10;
+        const headerColumns = headerCanvas.width / headerFontSize;
+        const headerDrops = [];
+
+        for (let i = 0; i < headerColumns; i++) {
+            headerDrops[i] = 1;
+        }
+
+        function drawHeaderMatrix() {
+            headerCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            headerCtx.fillRect(0, 0, headerCanvas.width, headerCanvas.height);
+            headerCtx.fillStyle = '#0F0';
+            headerCtx.font = headerFontSize + 'px monospace';
+
+            for (let i = 0; i < headerDrops.length; i++) {
+                const text = headerLetters[Math.floor(Math.random() * headerLetters.length)];
+                headerCtx.fillText(text, i * headerFontSize, headerDrops[i] * headerFontSize);
+                if (headerDrops[i] * headerFontSize > headerCanvas.height && Math.random() > 0.975) {
+                    headerDrops[i] = 0;
+                }
+                headerDrops[i]++;
+            }
+        }
+
+        setInterval(drawHeaderMatrix, 33);
+
+        document.querySelectorAll('.toggle-labs').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetList = document.getElementById(targetId);
+
+                // Hide all lab lists
+                document.querySelectorAll('.lab-content').forEach(list => {
+                    list.classList.add('hidden');
+                    list.classList.remove('active');
+                });
+
+                // Show the clicked lab list
+                if (targetList) {
+                    targetList.classList.remove('hidden');
+                    targetList.classList.add('active');
+                }
+            });
+        });
+
+        // Diploma CSE Lab Contents
+        const labDiplomaCse1 = document.getElementById('lab-diploma-cse1');
+        const labDiplomaCse2 = document.getElementById('lab-diploma-cse2');
+        const labDiplomaCse3 = document.getElementById('lab-diploma-cse3');
+        const labDiplomaCse4 = document.getElementById('lab-diploma-cse4');
+        const labDiplomaCse5 = document.getElementById('lab-diploma-cse5');
+        const labDiplomaCse6 = document.getElementById('lab-diploma-cse6');
+
+        // Diploma EE Lab Contents
+        const labDiplomaEe1 = document.getElementById('lab-diploma-ee1');
+        const labDiplomaEe2 = document.getElementById('lab-diploma-ee2');
+        const labDiplomaEe3 = document.getElementById('lab-diploma-ee3');
+        const labDiplomaEe4 = document.getElementById('lab-diploma-ee4');
+        const labDiplomaEe5 = document.getElementById('lab-diploma-ee5');
+        const labDiplomaEe6 = document.getElementById('lab-diploma-ee6');
+
+        // Diploma Civil Lab Contents
+        const labDiplomaCivil1 = document.getElementById('lab-diploma-civil1');
+        const labDiplomaCivil2 = document.getElementById('lab-diploma-civil2');
+        const labDiplomaCivil3 = document.getElementById('lab-diploma-civil3');
+        const labDiplomaCivil4 = document.getElementById('lab-diploma-civil4');
+        const labDiplomaCivil5 = document.getElementById('lab-diploma-civil5');
+        const labDiplomaCivil6 = document.getElementById('lab-diploma-civil6');
+
+        // BCA Lab Contents
+        const labBca1 = document.getElementById('lab-bca1');
+
+        // B.Tech CSE Lab Contents
+        const labBtechCse1 = document.getElementById('lab-btech-cse1');
+
+        // B.Tech EE Lab Contents
+        const labBtechEe1 = document.getElementById('lab-btech-ee1');
+
+        // B.Tech Civil Lab Contents
+        const labBtechCivil1 = document.getElementById('lab-btech-civil1');
+
+        // Add lab content sections
+        labDiplomaCse1.innerHTML = '<h4>1st Semester CSE Lab Works</h4><ul><li><a href="lab-files/diploma-cse1-lab1.pdf" target="_blank">Computer Fundamentals Lab</a></li><li><a href="lab-files/diploma-cse1-lab2.pdf" target="_blank">Basic Electronics Lab</a></li></ul>';
+        labDiplomaCse2.innerHTML = '<h4>2nd Semester CSE Lab Works</h4><ul><li><a href="lab-files/diploma-cse2-lab1.pdf" target="_blank">Programming Lab</a></li><li><a href="lab-files/diploma-cse2-lab2.pdf" target="_blank">Digital Electronics Lab</a></li></ul>';
+        labDiplomaCse3.innerHTML = '<h4>3rd Semester CSE Lab Works</h4><ul><li><a href="lab-files/diploma-cse3-lab1.pdf" target="_blank">Data Structures Lab</a></li><li><a href="lab-files/diploma-cse3-lab2.pdf" target="_blank">Object Oriented Programming Lab</a></li></ul>';
+        labDiplomaCse4.innerHTML = '<h4>4th Semester CSE Lab Works</h4><ul><li><a href="lab-files/diploma-cse4-lab1.pdf" target="_blank">Software Engineering Lab</a></li><li><a href="lab-files/diploma-cse4-lab2.pdf" target="_blank">Java Programming Lab</a></li></ul>';
+        labDiplomaCse5.innerHTML = '<h4>5th Semester CSE Lab Works</h4><ul><li><a href="lab-files/diploma-cse5-lab1.pdf" target="_blank">Web Technologies Lab</a></li><li><a href="lab-files/diploma-cse5-lab2.pdf" target="_blank">Computer Graphics Lab</a></li></ul>';
+        labDiplomaCse6.innerHTML = '<h4>6th Semester CSE Lab Works</h4><ul><li><a href="lab-files/diploma-cse6-lab1.pdf" target="_blank">E-Commerce Lab</a></li><li><a href="lab-files/diploma-cse6-lab2.pdf" target="_blank">Mobile Application Development Lab</a></li></ul>';
+
+        labDiplomaEe1.innerHTML = '<h4>1st Semester EE Lab Works</h4><ul><li><a href="lab-files/diploma-ee1-lab1.pdf" target="_blank">Basic Electrical Lab</a></li><li><a href="lab-files/diploma-ee1-lab2.pdf" target="_blank">Electronics Lab</a></li></ul>';
+        labDiplomaEe2.innerHTML = '<h4>2nd Semester EE Lab Works</h4><ul><li><a href="lab-files/diploma-ee2-lab1.pdf" target="_blank">Power Electronics Lab</a></li><li><a href="lab-files/diploma-ee2-lab2.pdf" target="_blank">Power System Lab</a></li></ul>';
+        labDiplomaEe3.innerHTML = '<h4>3rd Semester EE Lab Works</h4><ul><li><a href="lab-files/diploma-ee3-lab1.pdf" target="_blank">Electrical Machines Lab</a></li><li><a href="lab-files/diploma-ee3-lab2.pdf" target="_blank">Power System Lab</a></li></ul>';
+        labDiplomaEe4.innerHTML = '<h4>4th Semester EE Lab Works</h4><ul><li><a href="lab-files/diploma-ee4-lab1.pdf" target="_blank">Digital Electronics Lab</a></li><li><a href="lab-files/diploma-ee4-lab2.pdf" target="_blank">Control Systems Lab</a></li></ul>';
+        labDiplomaEe5.innerHTML = '<h4>5th Semester EE Lab Works</h4><ul><li><a href="lab-files/diploma-ee5-lab1.pdf" target="_blank">Power Electronics Lab</a></li><li><a href="lab-files/diploma-ee5-lab2.pdf" target="_blank">Renewable Energy Lab</a></li></ul>';
+        labDiplomaEe6.innerHTML = '<h4>6th Semester EE Lab Works</h4><ul><li><a href="lab-files/diploma-ee6-lab1.pdf" target="_blank">Energy Management Lab</a></li><li><a href="lab-files/diploma-ee6-lab2.pdf" target="_blank">Traction and Transportation Lab</a></li></ul>';
+
+        labDiplomaCivil1.innerHTML = '<h4>1st Semester Civil Lab Works</h4><ul><li><a href="lab-files/diploma-civil1-lab1.pdf" target="_blank">Engineering Drawing Lab</a></li><li><a href="lab-files/diploma-civil1-lab2.pdf" target="_blank">Surveying Lab</a></li></ul>';
+        labDiplomaCivil2.innerHTML = '<h4>2nd Semester Civil Lab Works</h4><ul><li><a href="lab-files/diploma-civil2-lab1.pdf" target="_blank">Construction Materials Lab</a></li><li><a href="lab-files/diploma-civil2-lab2.pdf" target="_blank">Concrete Technology Lab</a></li></ul>';
+        labDiplomaCivil3.innerHTML = '<h4>3rd Semester Civil Lab Works</h4><ul><li><a href="lab-files/diploma-civil3-lab1.pdf" target="_blank">Strength of Materials Lab</a></li><li><a href="lab-files/diploma-civil3-lab2.pdf" target="_blank">Fluid Mechanics Lab</a></li></ul>';
+        labDiplomaCivil4.innerHTML = '<h4>4th Semester Civil Lab Works</h4><ul><li><a href="lab-files/diploma-civil4-lab1.pdf" target="_blank">Building Construction Lab</a></li><li><a href="lab-files/diploma-civil4-lab2.pdf" target="_blank">Transportation Engineering Lab</a></li></ul>';
+        labDiplomaCivil5.innerHTML = '<h4>5th Semester Civil Lab Works</h4><ul><li><a href="lab-files/diploma-civil5-lab1.pdf" target="_blank">Soil Mechanics Lab</a></li><li><a href="lab-files/diploma-civil5-lab2.pdf" target="_blank">Public Health Engineering Lab</a></li></ul>';
+        labDiplomaCivil6.innerHTML = '<h4>6th Semester Civil Lab Works</h4><ul><li><a href="lab-files/diploma-civil6-lab1.pdf" target="_blank">Design of Steel Structures Lab</a></li><li><a href="lab-files/diploma-civil6-lab2.pdf" target="_blank">Irrigation Engineering Lab</a></li></ul>';
+
+        labBca1.innerHTML = '<h4>1st Semester BCA Lab Works</h4><ul><li><a href="lab-files/bca1-lab1.pdf" target="_blank">Computer Fundamentals Lab</a></li><li><a href="lab-files/bca1-lab2.pdf" target="_blank">Office Automation Lab</a></li></ul>';
+
+        labBtechCse1.innerHTML = '<h4>1st Semester B.Tech CSE Lab Works</h4><ul><li><a href="lab-files/btech-cse1-lab1.pdf" target="_blank">Programming Lab</a></li><li><a href="lab-files/btech-cse1-lab2.pdf" target="_blank">Physics Lab</a></li></ul>';
+
+        labBtechEe1.innerHTML = '<h4>1st Semester B.Tech EE Lab Works</h4><ul><li><a href="lab-files/btech-ee1-lab1.pdf" target="_blank">Basic Electrical Lab</a></li><li><a href="lab-files/btech-ee1-lab2.pdf" target="_blank">Physics Lab</a></li></ul>';
+
+        labBtechCivil1.innerHTML = '<h4>1st Semester B.Tech Civil Lab Works</h4><ul><li><a href="lab-files/btech-civil1-lab1.pdf" target="_blank">Engineering Drawing Lab</a></li><li><a href="lab-files/btech-civil1-lab2.pdf" target="_blank">Physics Lab</a></li></ul>';
+
+        // Add this to your existing script section
+        document.querySelectorAll('.semester-header').forEach(header => {
+            header.addEventListener('click', function() {
+                // Toggle active class on header
+                this.classList.toggle('active');
+
+                // Get the lab subjects container
+                const labSubjects = this.nextElementSibling;
+
+                // Toggle show class on lab subjects
+                if (labSubjects.classList.contains('show')) {
+                    labSubjects.classList.remove('show');
+                    setTimeout(() => {
+                        labSubjects.classList.add('hidden');
+                    }, 300);
+                } else {
+                    labSubjects.classList.remove('hidden');
+                    setTimeout(() => {
+                        labSubjects.classList.add('show');
+                    }, 10);
+                }
+            });
+        });
+
+        // Add this to your existing script section
+        document.querySelectorAll('.semester-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                // Toggle active class on button
+                this.classList.toggle('active');
+
+                // Get the content container
+                const content = this.nextElementSibling;
+
+                // Toggle show class
+                if (content.classList.contains('show')) {
+                    content.classList.remove('show');
+                    content.style.maxHeight = null;
+                } else {
+                    content.classList.add('show');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Remove or comment out the search bar JavaScript
+        /*
+        document.getElementById('search-button').addEventListener('click', function() {
+            performSearch();
+        });
+
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const items = document.querySelectorAll('#item-list li');
+
+            items.forEach(item => {
+                const linkText = item.textContent.toLowerCase();
+                const linkHref = item.querySelector('a').getAttribute('href').toLowerCase();
+
+                if (linkText.includes(query) || linkHref.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        */
+    </script>
+</body>
+
+</html>
